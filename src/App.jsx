@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import New from "./pages/New";
 import Diary from "./pages/Diary";
 import Notfound from "./pages/NotFound";
+import { getEmotionImage } from "./util/get-emotion-image";
 
 // 1. "/" : Home
 // 2. "/new" : create a new page
@@ -16,6 +17,13 @@ function App() {
   };
   return (
     <>
+      <div>
+        <img src={getEmotionImage(1)} />
+        <img src={getEmotionImage(2)} />
+        <img src={getEmotionImage(3)} />
+        <img src={getEmotionImage(4)} />
+        <img src={getEmotionImage(5)} />
+      </div>
       <div>
         <Link to={"/"}>Home</Link>
         <Link to={"/new"}>New</Link>
