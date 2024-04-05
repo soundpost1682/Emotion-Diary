@@ -21,3 +21,5 @@ export function getEmotionImage(emotionID) {
       return null;
   }
 }
+
+export default getEmotionImage;
