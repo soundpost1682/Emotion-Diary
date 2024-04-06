@@ -10,15 +10,21 @@ import Notfound from "./pages/NotFound";
 const mocData = [
   {
     id: 1,
-    createdDate: new Date().getTime(),
+    createdDate: new Date("2024-04-19").getTime(),
     emotionId: 1,
     content: "1st detail",
   },
   {
     id: 2,
-    createdDate: new Date().getTime(),
+    createdDate: new Date("2024-04-18").getTime(),
     emotionId: 2,
     content: "2nd detail",
+  },
+  {
+    id: 3,
+    createdDate: new Date("2024-03-08").getTime(),
+    emotionId: 3,
+    content: "3rd detail",
   },
 ];
 
@@ -36,8 +42,8 @@ function reducer(state, action) {
       return state;
   }
 }
-const DiaryStateContext = createContext();
-const DiaryDispatchContext = createContext();
+export const DiaryStateContext = createContext();
+export const DiaryDispatchContext = createContext();
 
 function App() {
   const [data, dispatch] = useReducer(reducer, mocData);
