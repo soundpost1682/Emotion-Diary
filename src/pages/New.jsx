@@ -2,16 +2,24 @@ import Header from "../components/Header";
 import Button from "../components/Button";
 import Editor from "../components/Editor";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { DiaryDispatchContext } from "../App";
 
 const New = () => {
+  const { onCreate } = useContext(DiaryDispatchContext);
   const nav = useNavigate();
+  const onSubmit = (input) => {
+    console.log(input);
+    // onCreate(input.createdDate.getTime(), input.emotionId, input.content);
+  };
+
   return (
     <div>
       <Header
         title={"How was your today?"}
         leftChild={<Button onClick={() => nav(-1)} text={"< back"} />}
       />
-      <Editor />
+      <Editor onSubmit={onSubmit} />
     </div>
   );
 };

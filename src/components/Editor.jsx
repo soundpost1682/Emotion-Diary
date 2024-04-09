@@ -40,7 +40,7 @@ const getStringedDate = (targetDate) => {
   return `${year}-${month}-${date}`;
 };
 
-const Editor = () => {
+const Editor = ({ onSubmit }) => {
   const [input, setInput] = useState({
     createdDate: new Date(),
     emotionId: 3,
@@ -52,7 +52,7 @@ const Editor = () => {
     let value = e.target.value;
 
     if (name === "createdDate") {
-      value = new Date(value);
+      value = new Date(`${value} 00:00:00`);
     }
 
     setInput({
@@ -60,7 +60,10 @@ const Editor = () => {
       [name]: value,
     });
   };
-  const emotionId = 3;
+
+  const onClickSubmitButton = () => {
+    onSubmit(input);
+  };
 
   return (
     <div className='Editor'>
@@ -78,20 +81,33 @@ const Editor = () => {
         <div className='emotion_list_wrapper'>
           {emotionList.map((item) => (
             <EmotionItem
+              onClick={() =>
+                onChangeInput({
+                  target: {
+                    name: "emotionId",
+                    value: item.emotionId,
+                  },
+                })
+              }
               key={item.emotionId}
               {...item}
-              isSelected={item.emotionId === emotionId}
+              isSelected={item.emotionId === input.emotionId}
             />
           ))}
         </div>
       </section>
       <section className='content_section'>
         <h4>What happened today </h4>
-        <textarea placeholder='How was today?' />
+        <textarea
+          name='content'
+          value={input.content}
+          onChange={onChangeInput}
+          placeholder='How was today?'
+        />
       </section>
       <section className='button_section'>
         <Button text={"Cancel"} />
-        <Button text={"Done"} type={"positive"} />
+        <Button onClick={onClickSubmitButton} text={"Done"} type={"positive"} />
       </section>
     </div>
   );
