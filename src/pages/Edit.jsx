@@ -5,13 +5,14 @@ import Editor from "../components/Editor";
 import { useContext, useEffect, useState } from "react";
 import { DiaryDispatchContext, DiaryStateContext } from "../App";
 import useDiary from "../hooks/useDiary";
+import usePageTitle from "../hooks/usePageTitle";
 
 const Edit = () => {
   const params = useParams();
   const nav = useNavigate();
   const { onDelete, onUpdate } = useContext(DiaryDispatchContext);
-
   const curDiaryItem = useDiary(params.id);
+  usePageTitle(`editing ${params.id}`);
 
   const onClickDelete = () => {
     if (window.confirm("Delete this diary? There's no way to restoration.")) {
